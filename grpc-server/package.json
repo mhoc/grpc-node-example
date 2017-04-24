@@ -1,0 +1,10 @@
+{
+  "script": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "grpc": "^1.2.4",
+    "lodash": "^4.17.4",
+    "shortid": "^2.2.8"
+  }
+}

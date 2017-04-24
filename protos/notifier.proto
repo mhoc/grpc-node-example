@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+service Notifier {
+  rpc GetStatus(StatusReq) returns (StatusResp) {}
+  rpc GetStatuses(StatusesReq) returns (stream StatusResp) {}
+  rpc SendWelcomeEmail(BasicEmailReq) returns (SendWelcomeEmailResp) {}
+}
+
+enum EmailTemplate {
+  WELCOME = 1;
+}
+
+enum SendingStatus {
+  SCHEDULED = 1;
+  DELIVERED = 2;
+  OPENED = 3;
+}
+
+message StatusReq {
+  required string send_id = 1;
+}
+
+message StatusResp {
+  string send_id = 1;
+  EmailTemplate template = 2;
+  string recipient = 3;
+  SendingStatus status = 4;
+}
+
+message StatusesReq {
+  repeated string send_ids = 1;
+}
+
+message BasicEmailReq {
+  string to_email = 1;
+}
+
+message SendWelcomeEmailResp {
+  string send_id = 1;
+}
